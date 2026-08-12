@@ -167,9 +167,7 @@ $(document).ready ( function() {
     $('#playButton').click( function(){
         let n = document.querySelector('input[name="count"]:checked').value;
         let lang = document.querySelector('input[name="language"]:checked').value;
-        let dataTransfer = [n, lang];
-        localStorage.setItem("dataTransfer", dataTransfer); /*Заносим значение поля_1 в хранилище*/
-        document.location.href = 'Game.html';
+        document.location.href = 'Game.html?length=' + n + '&lang=' + lang;
     })
 //    $('#rusRules')[0].style.left = 0;
 //    $('#engRules')[0].style.right = 0;
