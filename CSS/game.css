@@ -1,80 +1,351 @@
-body {
-    font-family: 'Playfair Display';
-    background-color: black;
-    color: white;
-    margin:auto;
-    display: inline;
-    position: relative;
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.inputField {
-    margin: auto;
-    text-align: center;
-    border-radius: 15%;
-    border: solid 5px;
-    padding: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: URL("BlackBG.jpg");
-    z-index: 0;
-}
-.inputLetter {
-    font-size: 30px;
-    text-align:center;
-    border-radius: 25%;
-    height: 3rem;
-}
-.check {
-    margin: 20px;
-    background-color: green;
-    color: white;
-    font-size: 20px;
-    border-radius: 10%;
-}
-.info {
-    font-size: 20px;
-    margin: 1.5rem;
-}
-.giveUp {
-    position: absolute;
-    right: 60px;
-    bottom: 0;
-    text-align:center;
-    margin: 20px;
-    background-color: red;
-    color: white;
-    font-size: 20px;
-    border-radius: 10%;
-}
-.history {
-    margin: 10px;
-    font-size: 30px;
-    padding: 10px 15px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    z-index: -1;
+    color: #fff;
+    padding: 20px;
+    margin: 0;
 }
-th {
-    margin: 1px;
-    padding: 1px;
-}
-td {
-    margin: 1px;
-    padding: 1px;
-    text-align: center;
-}
-.columnHistory {
-    border: solid 1px;
-}
+
+/* ===== HOME BUTTON ===== */
 .home {
-    position: absolute;
-    top:0;
-    left:0;
-    float: left;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 100;
 }
-a {
-    color: white;
+
+.home a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
 }
+
+.home a:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* ===== GAME CONTAINER ===== */
+.game-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== INPUT FIELD ===== */
+.inputField {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px 50px;
+    min-width: 380px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.inputField:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== INPUT LETTERS ===== */
+.inputWord {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.inputLetter {
+    width: 60px;
+    height: 70px;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    color: #fff;
+    outline: none;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inputLetter:focus {
+    border-color: #6c63ff;
+    background: rgba(108, 99, 255, 0.15);
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.inputLetter::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.inputLetter:focus::placeholder {
+    opacity: 0;
+}
+
+/* ===== INFO MESSAGE ===== */
+.info {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.info.success {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.info.error {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.info.win {
+    color: #fcd34d;
+    background: rgba(252, 211, 77, 0.15);
+    border: 1px solid rgba(252, 211, 77, 0.3);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* ===== BUTTONS ===== */
+.button-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.check, .giveUp {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 1;
+}
+
+.check {
+    background: linear-gradient(135deg, #6c63ff, #5a52d5);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+}
+
+.check:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(108, 99, 255, 0.4);
+}
+
+.check:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.3);
+}
+
 .giveUp {
-    z-index: 1;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.giveUp:hover {
+    background: rgba(248, 113, 113, 0.2);
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ===== HISTORY ===== */
+.history {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 25px 30px;
+    max-height: 550px;
+    overflow-y: auto;
+    min-width: 280px;
+    flex: 1;
+}
+
+.history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.history::-webkit-scrollbar-thumb {
+    background: rgba(108, 99, 255, 0.4);
+    border-radius: 10px;
+}
+
+.history::-webkit-scrollbar-thumb:hover {
+    background: rgba(108, 99, 255, 0.6);
+}
+
+/* ===== HISTORY TABLE ===== */
+.history table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.history th {
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 12px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.history td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 500;
+}
+
+.history tr:hover td {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.history .word-cell {
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.history .bulls-cell {
+    color: #4ade80;
+    font-weight: 700;
+}
+
+.history .cows-cell {
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+/* ===== COLUMN CONTAINER ===== */
+.columnHistory {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+/* ===== LOSE PHRASE ===== */
+.losePhrase {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f87171;
+    text-align: center;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .inputField {
+        min-width: unset;
+        width: 100%;
+        max-width: 400px;
+        padding: 30px 25px;
+    }
+
+    .inputLetter {
+        width: 50px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .history {
+        width: 100%;
+        max-width: 400px;
+        min-width: unset;
+        max-height: 400px;
+    }
+
+    .home {
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputField {
+        padding: 20px 15px;
+    }
+
+    .inputLetter {
+        width: 44px;
+        height: 52px;
+        font-size: 22px;
+    }
+
+    .inputWord {
+        gap: 8px;
+    }
+
+    .check, .giveUp {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .info {
+        font-size: 15px;
+        min-height: 32px;
+    }
 }

@@ -328,12 +328,11 @@ async function fetchEnglishWords(length) {
 function createInputField(n, sizeField) {
     let inputField = document.createElement("div");
     inputField.className = "inputField";
-    inputField.style.width = "" + sizeField + "px";
-    inputField.style.height = "" + sizeField + "px";
 
     let inputForm = document.createElement("form");
     inputForm.name = 'inputWord';
     inputForm.className = 'inputWord';
+    inputForm.autocomplete = 'off';
 
     let i = 0;
     while (i < n) {
@@ -342,7 +341,8 @@ function createInputField(n, sizeField) {
         inputLetter.type = 'text';
         inputLetter.maxLength = "1";
         inputLetter.className = "inputLetter";
-        inputLetter.style.width = "" + (sizeField - n * 20) / n + "px";
+        inputLetter.placeholder = "?";
+        inputLetter.autocomplete = 'off';
         inputForm.append(inputLetter);
         i += 1;
     }
@@ -353,60 +353,92 @@ function createInputField(n, sizeField) {
     info.append("Enter your word");
     inputField.append(info);
 
+    let buttonGroup = document.createElement("div");
+    buttonGroup.className = "button-group";
+
     let checkBut = document.createElement("input");
     checkBut.type = "button";
     checkBut.name = "check";
-    checkBut.value = "Check!";
+    checkBut.value = "Check";
     checkBut.className = "check";
-    checkBut.style.width = "" + (sizeField - n * 20) / n * 1.5 + "px";
-    checkBut.style.height = "" + (sizeField - n * 20) / n + "px";
-    inputField.append(checkBut);
+    buttonGroup.append(checkBut);
 
     let giveUp = document.createElement("input");
     giveUp.type = "button";
     giveUp.name = "giveUp";
     giveUp.value = "Give up";
     giveUp.className = "giveUp";
-    giveUp.style.width = "" + (sizeField - n * 20) / n * 1.5 / 2 + "px";
-    giveUp.style.height = "" + (sizeField - n * 20) / n / 2 + "px";
-    inputField.append(giveUp);
+    buttonGroup.append(giveUp);
 
-    $('.body').append(inputField);
+    inputField.append(buttonGroup);
+
+    $('.game-container').prepend(inputField);
 }
 
 function createHistory() {
     let history = document.createElement("div");
     history.className = 'history';
-    history.style.width = "" + ($('.inputField')[0].offsetWidth + 10) + "px";
-    history.style.height = "" + ($('.inputField')[0].offsetHeight - 40) + "px";
-    history.style.position = "absolute";
-    history.style.left = "" + $('.inputField')[0].offsetWidth + "px";
-    $('.body').append(history);
-}
 
-function createColumn(countColumn) {
-    let column = document.createElement("td");
-    let firstRow = document.createElement("tr");
-    column.className = "columnHistory";
-    column.id = "column" + countColumn;
+    // Создаем таблицу с заголовками
+    let table = document.createElement("table");
+    let thead = document.createElement("thead");
+    let headerRow = document.createElement("tr");
 
     let wordTh = document.createElement("th");
-    wordTh.scope = "row";
-    wordTh.append("Word");
-    firstRow.append(wordTh);
+    wordTh.textContent = "Word";
+    headerRow.append(wordTh);
 
     let bullsTh = document.createElement("th");
-    bullsTh.scope = "row";
-    bullsTh.append("Bulls");
-    firstRow.append(bullsTh);
+    bullsTh.textContent = "Bulls";
+    headerRow.append(bullsTh);
 
     let cowsTh = document.createElement("th");
-    cowsTh.scope = "row";
-    cowsTh.append("Cows");
-    firstRow.append(cowsTh);
+    cowsTh.textContent = "Cows";
+    headerRow.append(cowsTh);
 
-    column.append(firstRow);
-    $('.history').append(column);
+    thead.append(headerRow);
+    table.append(thead);
+
+    let tbody = document.createElement("tbody");
+    tbody.id = "historyBody";
+    table.append(tbody);
+
+    history.append(table);
+    $('.game-container').append(history);
+}
+
+function addHistoryEntry(inputWord, bulls, cows) {
+    let tbody = document.getElementById('historyBody');
+    if (!tbody) {
+        // Если tbody не найден, создаем заново
+        createHistory();
+        tbody = document.getElementById('historyBody');
+    }
+
+    let row = document.createElement("tr");
+
+    let wordTd = document.createElement("td");
+    wordTd.textContent = inputWord;
+    wordTd.className = "word-cell";
+    row.append(wordTd);
+
+    let bullsTd = document.createElement("td");
+    bullsTd.textContent = bulls;
+    bullsTd.className = "bulls-cell";
+    row.append(bullsTd);
+
+    let cowsTd = document.createElement("td");
+    cowsTd.textContent = cows;
+    cowsTd.className = "cows-cell";
+    row.append(cowsTd);
+
+    tbody.append(row);
+
+    // Прокручиваем историю вниз
+    let historyContainer = document.querySelector('.history');
+    if (historyContainer) {
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+    }
 }
 
 // ===== MAIN GAME LOGIC =====
@@ -618,28 +650,8 @@ $(document).ready(async function() {
             }
         }
 
-        // Add to history
-        countRow %= 13;
-        if (countRow == 0) {
-            countColumn++;
-            createColumn(countColumn);
-        }
-
-        let line = document.createElement("tr");
-        let wordTd = document.createElement("td");
-        wordTd.append(inputWord);
-        line.append(wordTd);
-
-        let bullsTd = document.createElement("td");
-        bullsTd.append(bulls);
-        line.append(bullsTd);
-
-        let cowsTd = document.createElement("td");
-        cowsTd.append(cows);
-        line.append(cowsTd);
-
-        $('#column' + countColumn).append(line);
-        countRow++;
+        // Добавляем запись в историю (вместо createColumn)
+        addHistoryEntry(inputWord, bulls, cows);
 
         // Focus back on first field for next guess
         form.elements[0].focus();
