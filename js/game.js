@@ -303,7 +303,15 @@ async function fetchEnglishWords(length) {
         const uniqueApiWords = [...new Set(filteredApiWords)];
 
         // Combine built-in dictionary with API words (no duplicates)
-        const combined = [...allWords, ...uniqueApiWords];
+        let combined = [...allWords, ...uniqueApiWords];
+        combined = combined.filter(word =>
+                                        word.length === length &&
+                                        new Set(word).size === length &&
+                                        /^[a-z]+$/.test(word) &&
+                                        !word.includes(' ') &&
+                                        !word.includes('-') &&
+                                        !word.includes("'") &&
+                                        word === word.toLowerCase());
         const finalWords = [...new Set(combined)];
 
         console.log('Built-in dictionary size:', allWords.length);
@@ -315,7 +323,7 @@ async function fetchEnglishWords(length) {
             console.log('Too few words, using extended dictionary');
             return getExtendedEnglishDictionary(length);
         }
-
+        console.log(finalWords)
         return finalWords;
     } catch (error) {
         console.warn('Error loading words, using extended dictionary:', error);
