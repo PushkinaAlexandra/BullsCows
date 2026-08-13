@@ -11,8 +11,8 @@ html, body {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    color: #fff;
+    background: linear-gradient(135deg, #033226, #043F2F, #033226);
+    color: #DCCFAC;
     padding: 20px;
     margin: 0;
     display: flex;
@@ -30,14 +30,14 @@ body {
 }
 
 .home a {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(220, 207, 172, 0.5);
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
     display: inline-block;
 }
 
 .home a:hover {
-    color: #fff;
+    color: #DCCFAC;
     transform: scale(1.1);
 }
 
@@ -56,9 +56,9 @@ body {
 
 /* ===== INPUT FIELD ===== */
 .inputField {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(4, 63, 47, 0.3);
     border-radius: 24px;
     padding: 40px 50px;
     min-width: 380px;
@@ -69,7 +69,7 @@ body {
 }
 
 .inputField:hover {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(4, 63, 47, 0.5);
     box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
 }
 
@@ -87,10 +87,10 @@ body {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(4, 63, 47, 0.25);
     border-radius: 14px;
-    color: #fff;
+    color: #DCCFAC;
     outline: none;
     transition: all 0.25s ease;
     text-transform: uppercase;
@@ -98,14 +98,14 @@ body {
 }
 
 .inputLetter:focus {
-    border-color: #6c63ff;
-    background: rgba(108, 99, 255, 0.15);
-    box-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
+    border-color: #DCCFAC;
+    background: rgba(166, 188, 92, 0.1);
+    box-shadow: 0 0 30px rgba(166, 188, 92, 0.15);
     transform: scale(1.05);
 }
 
 .inputLetter::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(220, 207, 172, 0.2);
     font-size: 20px;
     font-weight: 300;
 }
@@ -118,34 +118,34 @@ body {
 .info {
     font-size: 18px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(220, 207, 172, 0.85);
     min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
 }
 
 .info.success {
-    color: #4ade80;
-    background: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.2);
+    color: #A6BC5C;
+    background: rgba(166, 188, 92, 0.1);
+    border: 1px solid rgba(166, 188, 92, 0.2);
 }
 
 .info.error {
-    color: #f87171;
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.2);
+    color: #DCCFAC;
+    background: rgba(220, 207, 172, 0.1);
+    border: 1px solid rgba(220, 207, 172, 0.2);
 }
 
 .info.win {
-    color: #fcd34d;
-    background: rgba(252, 211, 77, 0.15);
-    border: 1px solid rgba(252, 211, 77, 0.3);
+    color: #DCCFAC;
+    background: rgba(166, 188, 92, 0.12);
+    border: 1px solid rgba(166, 188, 92, 0.25);
     font-size: 22px;
     font-weight: 600;
 }
@@ -171,39 +171,40 @@ body {
 }
 
 .check {
-    background: linear-gradient(135deg, #6c63ff, #5a52d5);
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+    background: #DCCFAC;
+    color: #033226;
+    box-shadow: 0 8px 24px rgba(166, 188, 92, 0.25);
 }
 
 .check:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(108, 99, 255, 0.4);
+    box-shadow: 0 12px 32px rgba(166, 188, 92, 0.35);
+    background: #CCCFAC;
 }
 
 .check:active {
     transform: translateY(0);
-    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(166, 188, 92, 0.25);
 }
 
 .giveUp {
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(220, 207, 172, 0.6);
+    border: 1px solid rgba(4, 63, 47, 0.2);
 }
 
 .giveUp:hover {
-    background: rgba(248, 113, 113, 0.2);
-    color: #f87171;
-    border-color: rgba(248, 113, 113, 0.3);
+    background: rgba(220, 207, 172, 0.1);
+    color: #DCCFAC;
+    border-color: rgba(220, 207, 172, 0.2);
     transform: translateY(-2px);
 }
 
 /* ===== HISTORY ===== */
 .history {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(4, 63, 47, 0.2);
     border-radius: 24px;
     padding: 25px 30px;
     max-height: 550px;
@@ -217,17 +218,17 @@ body {
 }
 
 .history::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
 }
 
 .history::-webkit-scrollbar-thumb {
-    background: rgba(108, 99, 255, 0.4);
+    background: rgba(166, 188, 92, 0.3);
     border-radius: 10px;
 }
 
 .history::-webkit-scrollbar-thumb:hover {
-    background: rgba(108, 99, 255, 0.6);
+    background: rgba(166, 188, 92, 0.5);
 }
 
 /* ===== HISTORY TABLE ===== */
@@ -241,26 +242,26 @@ body {
     padding: 8px 12px;
     text-align: center;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(220, 207, 172, 0.4);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     font-size: 12px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 2px solid rgba(4, 63, 47, 0.2);
 }
 
 .history tbody td {
     padding: 10px 12px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(4, 63, 47, 0.1);
     font-weight: 500;
 }
 
 .history tbody tr:hover td {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .history .word-cell {
-    color: #fff;
+    color: #DCCFAC;
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -279,7 +280,7 @@ body {
 .losePhrase {
     font-size: 28px;
     font-weight: 700;
-    color: #f87171;
+    color: #DCCFAC;
     text-align: center;
     animation: pulse 1.5s ease-in-out infinite;
 }
@@ -294,8 +295,8 @@ body {
     text-align: center;
     margin-top: auto;
     padding: 25px 20px 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(4, 63, 47, 0.2);
+    color: rgba(220, 207, 172, 0.25);
     font-size: 0.85rem;
     letter-spacing: 0.3px;
     width: 100%;
@@ -315,17 +316,17 @@ body {
 }
 
 .main-footer .footer-links a {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(220, 207, 172, 0.4);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .main-footer .footer-links a:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(220, 207, 172, 0.8);
 }
 
 .main-footer .footer-links .separator {
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(220, 207, 172, 0.1);
 }
 
 /* ===== RESPONSIVE ===== */
